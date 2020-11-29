@@ -92,7 +92,7 @@ export const Welcome = (args) => (
               position='relative'
               padding={8}
             >
-              Welcome to react-primitive Storybook.
+              Welcome to primitive-react Storybook.
               <br />
               Using it in your project is as easy as importing the `
               {`<Primitive>`}` component and passing down any css supported
@@ -102,7 +102,7 @@ export const Welcome = (args) => (
               <br />
               For example:
               <CodeBlock>
-                {`import Primitive from 'react-primitive'
+                {`import Primitive from 'primitive-react'
 
 <Primitive
   renderAs="code"
@@ -152,11 +152,11 @@ export const Welcome = (args) => (
             >
               <Primitive renderAs='li'>
                 <Text>1. Installation</Text>
-                <CodeBlock>npm i react-primitive</CodeBlock>
+                <CodeBlock>npm i primitive-react</CodeBlock>
               </Primitive>
               <Primitive renderAs='li'>
                 <Text>2. Import</Text>
-                <CodeBlock>import Primitive from 'react-primitive'</CodeBlock>
+                <CodeBlock>import Primitive from 'primitive-react'</CodeBlock>
               </Primitive>
               <Primitive renderAs='li'>
                 <Text>3. Props</Text>

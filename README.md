@@ -1,30 +1,52 @@
-# primitive
+# primitive-react
 
-> Made with create-react-library
+Turn react props in real css styles.
 
-[![NPM](https://img.shields.io/npm/v/primitive.svg)](https://www.npmjs.com/package/primitive) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+## Example
 
-## Install
+import Primitive from 'primitive-react'
 
-```bash
-npm install --save primitive
-```
+    <Primitive
+      renderAs="code"
+      backgroundColor="#f9f9f9"
+      border="3px solid orange"
+      boxShadow='3px 3px blue'
+      fontFamily="Consolas"
+      fontSize={16}
+      hover={{
+        backgroundColor: "#fff",
+      }}
+      media={{
+        "screen and (min-width: 768px)": {
+          fontSize: 18
+        }
+      }}
+    >
+      <Primitive renderAs='pre'>
+        Hello code
+      </Primitive>
+    </Primitive>
 
-## Usage
+## Installation
 
-```jsx
-import React, { Component } from 'react'
+    npm i react-primitive
 
-import MyComponent from 'primitive'
-import 'primitive/dist/index.css'
+## Import
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
-```
+import Primitive from 'primitive-react'
 
-## License
+## Props
 
-MIT © [0m15](https://github.com/0m15)
+    renderAs?   html tag to render      "div"
+    hover?      optional hover css      {}
+    active?     optional active css     {}
+    focus?      optional focus css      {}
+    disabled?   optional disabled css   {}
+    media?      optional media queries  {}
+    className?  additional className    ""
+
+## Demo
+
+Clone or download repo and run
+
+    npm run storybook

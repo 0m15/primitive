@@ -1,7 +1,7 @@
 {
-  "name": "primitive",
+  "name": "primitive-react",
   "version": "0.1.0",
-  "description": "Made with create-react-library",
+  "description": "A <Primitive/> component for React.js",
   "author": "0m15",
   "license": "MIT",
   "repository": "0m15/primitive",
