@@ -2,9 +2,11 @@
 
 Turn react props in real css styles.
 
+    npm i primitive-react
+
 ## Example
 
-import Primitive from 'primitive-react'
+    import Primitive from 'primitive-react'
 
     <Primitive
       renderAs="code"
@@ -29,11 +31,11 @@ import Primitive from 'primitive-react'
 
 ## Installation
 
-    npm i react-primitive
+    npm i primitive-react
 
 ## Import
 
-import Primitive from 'primitive-react'
+    import Primitive from 'primitive-react'
 
 ## Props
 
