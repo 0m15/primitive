@@ -151,8 +151,12 @@ export default function Primitive({
   const Element = renderAs
 
   return (
-    <Element className={classList} {...domProps}>
-      {children !== undefined ? children : null}
+    // react complaints if input has children,
+    // so we need to wrap in a fragment
+    <>
+      <Element className={classList} {...domProps}>
+        {children !== undefined ? children : null}
+      </Element>
       <Style>
         {`.${baseClassName} {
   ${styles};
@@ -172,6 +176,6 @@ export default function Primitive({
 
         {mediaQueries}
       </Style>
-    </Element>
+    </>
   )
 }
