@@ -1,6 +1,7 @@
 # primitive-react
 
 Turn react props in real css styles.
+Demo: https://codesandbox.io/s/primitive-reactdemo-pkj3t
 
     npm i primitive-react
 
