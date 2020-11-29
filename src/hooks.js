@@ -1,10 +1,4 @@
 import { useMemo } from 'react'
-import crypto from 'crypto'
-
-function create_guid() {
-  var hexstring = crypto.randomBytes(2).toString('hex') // 8 bytes is a 16 character string
-  return hexstring
-}
 
 const camelToDash = (str) => str.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())
 
@@ -51,18 +45,13 @@ const propsToCss = (props, defaultUnit) => {
 
   return styleString
 }
-export default function usePrimitive(
-  props,
-  { defaultUnit = 'px', classPrefix = 'p_' } = {}
-) {
-  const className = useMemo(() => classPrefix + create_guid(), [classPrefix])
-
+export default function usePrimitive(props, { defaultUnit = 'px' } = {}) {
   const styles = useMemo(() => propsToCss(props, defaultUnit), [
     props,
     defaultUnit
   ])
 
-  return [className, styles]
+  return styles
 }
 
 export function useMediaQueries(mediaProp, { defaultUnit = 'px' } = {}) {

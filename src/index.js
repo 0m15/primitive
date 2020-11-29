@@ -1,7 +1,13 @@
 import React, { useMemo } from 'react'
 import classNames from 'classnames'
+import crypto from 'crypto'
 import usePrimitive, { useMediaQueries } from './hooks'
 import Style from './Style'
+
+function createGuid() {
+  var hexstring = 'a' + crypto.randomBytes(1).toString('hex')
+  return hexstring
+}
 
 const allowedProps = [
   'content',
@@ -113,6 +119,11 @@ function Primitive(
   },
   ref
 ) {
+  const baseClassName = useMemo(
+    () => (className ? className + '__' : 'Prim__') + createGuid(),
+    [className]
+  )
+
   const [domProps, cssProps] = useMemo(() => {
     const domProps = extractProps(props, false)
     const cssProps = extractProps(props)
@@ -126,17 +137,16 @@ function Primitive(
   const hoverProps = useMemo(() => extractProps(hover), [hover])
   const focusProps = useMemo(() => extractProps(focus), [focus])
 
-  const [baseClassName, styles] = usePrimitive(cssProps)
-  const [activeClassName, activeStyles] = usePrimitive(activeProps)
-  const [hoverClassName, hoverStyles] = usePrimitive(hoverProps)
-  const [focusClassName, focusStyles] = usePrimitive(focusProps)
+  const styles = usePrimitive(cssProps)
+  const activeStyles = usePrimitive(activeProps)
+  const hoverStyles = usePrimitive(hoverProps)
+  const focusStyles = usePrimitive(focusProps)
 
   const classList = classNames({
-    [className]: className !== undefined,
     [baseClassName]: true,
-    [activeClassName]: isActive,
-    [hoverClassName]: isHover,
-    [focusClassName]: isFocus
+    [baseClassName + '.active']: isActive,
+    [baseClassName + '.hover']: isHover,
+    [baseClassName + '.focus']: isFocus
   })
 
   const mediaQueries = useMemo(
@@ -168,15 +178,15 @@ function Primitive(
   ${styles};
 }`}
         {hoverStyles &&
-          `.${baseClassName}:hover, .${hoverClassName} {
+          `.${baseClassName}:hover, .${baseClassName}.hover {
   ${hoverStyles}
 }`}
         {activeStyles &&
-          `.${baseClassName}:active, .${activeClassName} {
+          `.${baseClassName}:active, .${className}.active {
   ${activeStyles}
 }`}
         {focusStyles &&
-          `.${baseClassName}:focus, .${focusClassName} {
+          `.${baseClassName}:focus, .${className}.focus {
   ${focusStyles}
 }`}
 
