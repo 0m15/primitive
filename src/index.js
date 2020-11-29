@@ -150,8 +150,6 @@ export default function Primitive({
 
   const Element = renderAs
 
-  console.log({ className })
-
   return (
     <React.Fragment>
       <Element className={classList} {...domProps}>
