@@ -151,10 +151,8 @@ export default function Primitive({
   const Element = renderAs
 
   return (
-    <React.Fragment>
-      <Element className={classList} {...domProps}>
-        {children !== undefined ? children : null}
-      </Element>
+    <Element className={classList} {...domProps}>
+      {children !== undefined ? children : null}
       <Style>
         {`.${baseClassName} {
   ${styles};
@@ -174,6 +172,6 @@ export default function Primitive({
 
         {mediaQueries}
       </Style>
-    </React.Fragment>
+    </Element>
   )
 }
