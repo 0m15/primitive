@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@react-spring/web": "^9.0.0-rc.3",
     "@storybook/addon-actions": "^6.1.8",
     "@storybook/addon-essentials": "^6.1.8",
     "@storybook/addon-links": "^6.1.8",

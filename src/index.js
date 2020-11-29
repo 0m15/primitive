@@ -81,7 +81,7 @@ const allowedProps = [
 ]
 
 const extractProps = (props, excludeNotAllowed = true) => {
-  return Object.keys(props)
+  return Object.keys(props || {})
     .filter((propName) =>
       excludeNotAllowed
         ? allowedProps.indexOf(propName) > -1
@@ -95,21 +95,24 @@ const extractProps = (props, excludeNotAllowed = true) => {
     }, {})
 }
 
-export default function Primitive({
-  renderAs = 'div',
-  children,
-  active = {},
-  hover = {},
-  disabled = {},
-  focus = {},
-  media = {},
-  isActive,
-  isHover,
-  isFocus,
-  isDisabled,
-  className,
-  ...props
-}) {
+function Primitive(
+  {
+    renderAs = 'div',
+    children,
+    active,
+    hover,
+    disabled,
+    focus,
+    media,
+    isActive,
+    isHover,
+    isFocus,
+    isDisabled,
+    className,
+    ...props
+  },
+  ref
+) {
   const [domProps, cssProps] = useMemo(() => {
     const domProps = extractProps(props, false)
     const cssProps = extractProps(props)
@@ -117,16 +120,16 @@ export default function Primitive({
     return [domProps, cssProps]
   }, [props])
 
-  const mediaCssProps = useMediaQueries(media)
+  const mediaCssProps = useMediaQueries(media || {})
 
-  const cssPropsActive = useMemo(() => extractProps(active), [active])
-  const cssPropsHover = useMemo(() => extractProps(hover), [hover])
-  const cssPropsFocus = useMemo(() => extractProps(focus), [focus])
+  const activeProps = useMemo(() => extractProps(active), [active])
+  const hoverProps = useMemo(() => extractProps(hover), [hover])
+  const focusProps = useMemo(() => extractProps(focus), [focus])
 
   const [baseClassName, styles] = usePrimitive(cssProps)
-  const [activeClassName, activeStyles] = usePrimitive(cssPropsActive)
-  const [hoverClassName, hoverStyles] = usePrimitive(cssPropsHover)
-  const [focusClassName, focusStyles] = usePrimitive(cssPropsFocus)
+  const [activeClassName, activeStyles] = usePrimitive(activeProps)
+  const [hoverClassName, hoverStyles] = usePrimitive(hoverProps)
+  const [focusClassName, focusStyles] = usePrimitive(focusProps)
 
   const classList = classNames({
     [className]: className !== undefined,
@@ -157,7 +160,7 @@ export default function Primitive({
     // react complaints if input has children,
     // so we need to wrap in a fragment
     <>
-      <Element className={classList} {...domProps}>
+      <Element ref={ref} className={classList} {...domProps}>
         {children !== undefined ? children : null}
       </Element>
       <Style>
@@ -182,3 +185,5 @@ export default function Primitive({
     </>
   )
 }
+
+export default React.forwardRef(Primitive)

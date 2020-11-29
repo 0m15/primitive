@@ -1,4 +1,4 @@
-import { useRef, useEffect, createRef } from 'react'
+import { useRef, useEffect } from 'react'
 import * as ReactDOM from 'react-dom'
 
 const styleTag = document.createElement('style')
@@ -7,10 +7,12 @@ styleTag.setAttribute('id', 'primitive')
 
 export function useHeadPortal() {
   const rootElemRef = useRef(styleTag)
+
   useEffect(function setupElement() {
     const rootEl = rootElemRef.current
     const parentElem = document.head
     parentElem.appendChild(rootEl)
+
     return function removeElement() {
       rootEl.remove()
     }

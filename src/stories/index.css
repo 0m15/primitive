@@ -1,12 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+
 html,
 body,
 #root {
   margin: 0 !important;
   padding: 0 !important;
-  height: 100%;
   overflow: hidden;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  padding: 4px;
+  background: blue;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: peachpuff;
+  box-shadow: 2px 2px blue;
+}
+::-webkit-scrollbar-thumb:window-inactive {
 }
