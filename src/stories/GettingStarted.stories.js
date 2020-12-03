@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock, Flex, H1, H2, Text } from '../components'
+import { CodeBlock, Flex, H1, H2, Text } from './components'
 import Primitive from '../index'
 import './index.css'
 
