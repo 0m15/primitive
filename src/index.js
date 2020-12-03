@@ -5,7 +5,7 @@ import usePrimitive, { useMediaQueries } from './hooks'
 import Style from './Style'
 
 function createGuid() {
-  var hexstring = 'a' + crypto.randomBytes(1).toString('hex')
+  var hexstring = crypto.randomBytes(16).toString('hex').slice(0, 4)
   return hexstring
 }
 
