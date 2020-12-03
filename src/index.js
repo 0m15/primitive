@@ -169,7 +169,7 @@ function Primitive(
   return (
     // react complaints if input has children,
     // so we need to wrap in a fragment
-    <>
+    <React.Fragment>
       <Element ref={ref} className={classList} {...domProps}>
         {children !== undefined ? children : null}
       </Element>
@@ -192,7 +192,7 @@ function Primitive(
 
         {mediaQueries}
       </Style>
-    </>
+    </React.Fragment>
   )
 }
 
