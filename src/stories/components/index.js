@@ -1,5 +1,5 @@
 import React from 'react'
-import Primitive from '../index'
+import Primitive from '../../index'
 
 export function Text(props) {
   return (

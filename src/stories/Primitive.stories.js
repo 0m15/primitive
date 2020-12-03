@@ -1,5 +1,5 @@
-import React from 'react'
-import { Text } from '../components'
+import React, { useState } from 'react'
+import { Text } from './components'
 import Primitive from '../index'
 import { a as animated, useSpring } from '@react-spring/web'
 import './index.css'
@@ -102,7 +102,8 @@ mediaQueries.argTypes = {
 }
 export const complementaryColorFinder = ({
   width,
-  borderColor: color,
+  color,
+  backgroundColor,
   ...args
 }) => {
   const complementaryColor = color
@@ -166,23 +167,55 @@ reactSpring.argTypes = {
   }
 }
 
+export const CssTransition = (args) => {
+  const [state, setState] = useState(false)
+  return (
+    <Primitive
+      width={'0.5'}
+      height={250}
+      transform={`scaleX(${state ? 1 : 0.2})`}
+      active={{
+        transform: `scaleX(1)`
+      }}
+      transition='transform 1s ease-in-out'
+      onClick={() => setState((state) => !state)}
+    >
+      <Primitive
+        {...args}
+        borderLeft='0'
+        borderRight='0'
+        backgroundImage='linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2))'
+      ></Primitive>
+    </Primitive>
+  )
+}
+
 export default {
   title: 'Primitive/Showcase',
   component: Primitive,
   decorators: [
     (Story) => (
-      <Primitive padding='2em' height='100%' overflow='hidden'>
+      <Primitive
+        padding='2em'
+        height='100%'
+        overflow='hidden'
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+      >
         <Story />
       </Primitive>
     )
   ],
   args: {
     width: '1',
+    height: 120,
     padding: 16,
-    color: 'blue',
-    borderWidth: 3,
+    color: 'black',
+    borderWidth: 4,
     borderStyle: 'solid',
-    borderColor: 'rgba(255, 10, 10, 1)'
+    borderColor: 'orange',
+    backgroundColor: 'transparent'
   },
   argTypes: {
     renderAs: {
@@ -193,6 +226,12 @@ export default {
     width: {
       control: rangeControl,
       label: 'width (* 100%)'
+    },
+    backgroundColor: {
+      control: { type: 'color' }
+    },
+    color: {
+      control: { type: 'color' }
     },
     borderColor: {
       control: { type: 'color' }
