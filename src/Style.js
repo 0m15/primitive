@@ -1,12 +1,8 @@
 import { useRef, useEffect } from 'react'
 import * as ReactDOM from 'react-dom'
 
-const styleTag = document.createElement('style')
-styleTag.setAttribute('type', 'text/css')
-styleTag.setAttribute('id', 'primitive')
-
 export function useHeadPortal() {
-  const rootElemRef = useRef(styleTag)
+  const rootElemRef = useRef(document.createElement('style'))
 
   useEffect(function setupElement() {
     const rootEl = rootElemRef.current
