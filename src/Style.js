@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react'
 import * as ReactDOM from 'react-dom'
-
 export function useHeadPortal() {
   const rootElemRef = useRef(document.createElement('style'))
 
